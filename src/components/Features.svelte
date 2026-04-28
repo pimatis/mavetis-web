@@ -14,6 +14,8 @@
         { icon: "ph-fill ph-list-checks", title: "OWASP / ASVS", desc: "Coverage across secrets, auth, injection, cryptography, and supply chain security." },
         { icon: "ph-fill ph-lock", title: "Security Architecture", desc: "No third-party dependencies, no cloud services, no accounts, no AI components." },
         { icon: "ph-fill ph-database", title: "Repository Snapshots", desc: "Opt-in snapshot baselines from existing security-sensitive code anchors." },
+        { icon: "ph-fill ph-line-segment", title: "Baseline Suppressions", desc: "Capture known findings and suppress legacy noise so teams focus on newly introduced issues." },
+        { icon: "ph-fill ph-magic-wand", title: "Init Wizard", desc: "Interactive project initialization with automatic .mavetis.yaml generation and sensible defaults." },
         { icon: "ph-fill ph-lightning", title: "Deterministic Execution", desc: "Pure Go standard library implementation ensuring consistent, reproducible results." }
     ];
 </script>

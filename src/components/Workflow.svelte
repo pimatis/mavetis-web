@@ -1,7 +1,9 @@
 <script lang="ts">
     const workflowSteps = [
+        { icon: "ph-fill ph-magic-wand", label: "Project initialized", cmd: "mavetis init" },
         { icon: "ph-fill ph-code", label: "Developer stages changes", cmd: "git add ." },
         { icon: "ph-fill ph-shield-check", label: "Mavetis scans locally", cmd: "mavetis review --staged" },
+        { icon: "ph-fill ph-line-segment", label: "Baseline suppresses known", cmd: "mavetis baseline --create --base main" },
         { icon: "ph-fill ph-list-checks", label: "Findings analyzed", cmd: "Profile & zone rules applied" },
         { icon: "ph-fill ph-prohibit", label: "Regressions blocked", cmd: "Pre-commit hook enforced" }
     ];

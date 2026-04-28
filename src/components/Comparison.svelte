@@ -9,6 +9,8 @@
         { feature: "Typed Custom Rules (YAML)", mavetis: true, cloud: false },
         { feature: "Supply-Chain Trust Analysis", mavetis: true, cloud: false },
         { feature: "Repository Snapshots", mavetis: true, cloud: false },
+        { feature: "Baseline Suppressions", mavetis: true, cloud: false },
+        { feature: "Init Wizard", mavetis: true, cloud: false },
         { feature: "SARIF / JSON Output", mavetis: true, cloud: true }
     ];
 </script>

@@ -34,6 +34,16 @@
             label: "CI/CD Integration",
             cmd: "mavetis ci --base main --format json --profile fintech",
             desc: "Optimized analysis for continuous integration with fintech policy"
+        },
+        {
+            label: "Baseline Create",
+            cmd: "mavetis baseline --create --base main",
+            desc: "Capture current findings as a baseline to suppress known issues"
+        },
+        {
+            label: "Init Wizard",
+            cmd: "mavetis init",
+            desc: "Initialize project configuration interactively with default .mavetis.yaml"
         }
     ];
 
@@ -48,6 +58,7 @@
         { flag: "--severity <level>", desc: "Filter by severity (critical, high, medium, low)" },
         { flag: "--fail-on <level>", desc: "Set blocking threshold for exit code 1" },
         { flag: "--config <path>", desc: "Custom config file path (.mavetis.yaml)" },
+        { flag: "--baseline <path>", desc: "Suppress known findings from baseline file" },
         { flag: "--stdin-targets", desc: "Read file targets from stdin" }
     ];
 
@@ -73,7 +84,8 @@
                 "Wildcard CORS and weakened CSP",
                 "Legacy TLS configuration",
                 "Privileged container settings",
-                "Architectural boundary violations"
+                "Architectural boundary violations",
+                "HSTS / X-Frame / X-Content-Type header removal"
             ]
         },
         {
@@ -85,7 +97,8 @@
                 "PII in telemetry",
                 "Raw error serialization",
                 "Sensitive tracing attributes",
-                "Security-intent regressions"
+                "Security-intent regressions",
+                "Health data in logs and observability"
             ]
         }
     ];
@@ -100,7 +113,11 @@
                 "Private key and high-entropy patterns",
                 "Weak randomness, hashing, and ciphers",
                 "IV/nonce misuse and reuse",
-                "Insecure algorithm selection"
+                "Insecure algorithm selection",
+                "Weak password hashing (MD5, SHA1, SHA256)",
+                "Plaintext password comparison",
+                "RSA key size under 2048",
+                "PII and sensitive data exposure"
             ]
         },
         {
@@ -112,7 +129,8 @@
                 "Insecure token storage",
                 "Session fixation and invalidation",
                 "IDOR and ownership verification gaps",
-                "JWT decode-without-verify flaws"
+                "JWT decode-without-verify flaws",
+                "Weak hash and plaintext credential detection"
             ]
         },
         {
@@ -124,7 +142,11 @@
                 "Path traversal and Zip Slip",
                 "Server-Side Template Injection (SSTI)",
                 "Dynamic code evaluation (eval)",
-                "Data flow from request to sink"
+                "Data flow from request to sink",
+                "ReDoS via user-controlled regex",
+                "XML XXE injection",
+                "Open redirect vulnerabilities",
+                "Local/Remote File Inclusion (LFI/RFI)"
             ]
         },
         {
@@ -137,6 +159,25 @@
                 "Lockfile integrity violations",
                 "Install-time script execution",
                 "Mutable GitHub Action references"
+            ]
+        },
+        {
+            icon: "ph-fill ph-wrench",
+            title: "Configuration Security",
+            items: [
+                "Missing HSTS header configuration",
+                "Missing X-Frame-Options header",
+                "Missing X-Content-Type-Options header",
+                "Security header regressions in config"
+            ]
+        },
+        {
+            icon: "ph-fill ph-currency-dollar",
+            title: "Business Logic",
+            items: [
+                "Mass assignment vulnerabilities",
+                "Price tampering in requests",
+                "Go unsafe.Pointer memory violations"
             ]
         }
     ];
@@ -279,7 +320,7 @@
                 <h3 class="text-sm font-semibold">Detection Capabilities</h3>
                 <p class="text-xs text-muted-foreground mt-1">Coverage across secrets, auth, injection, and supply chain security</p>
             </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
                 {#each detectionCapabilities as capability}
                     <Card>
                         <CardContent class="flex flex-col gap-4">
@@ -325,7 +366,7 @@
         </div>
 
         <div class="mb-16">
-            <div class="grid lg:grid-cols-2 gap-px bg-border">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
                 <Card>
                     <CardContent class="flex flex-col gap-5">
                         <div class="flex items-center gap-2">
@@ -359,6 +400,30 @@
                                 <div class="p-3 text-xs leading-relaxed font-mono space-y-1">
                                     <p class="text-muted-foreground">snapshot:</p>
                                     <p class="pl-4">path: <span class="text-foreground">.mavetis-snapshots.yaml</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardContent class="flex flex-col gap-5">
+                        <div class="flex items-center gap-2">
+                            <span class="ph-fill ph-line-segment text-lg text-primary"></span>
+                            <h3 class="text-sm font-semibold">Baseline Suppressions</h3>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <p class="text-xs text-muted-foreground leading-relaxed">
+                                Record known findings and focus only on newly introduced issues. Ideal for legacy codebases migrating to continuous security review.
+                            </p>
+                            <div class="bg-card border border-border">
+                                <div class="px-3 py-2 border-b border-border bg-secondary/50">
+                                    <span class="text-xs text-muted-foreground font-mono">$ mavetis baseline --create --base main</span>
+                                </div>
+                                <div class="p-3 text-xs leading-relaxed font-mono space-y-1">
+                                    <p class="text-muted-foreground">baseline:</p>
+                                    <p class="pl-4">- rule: <span class="text-foreground">inject.sql.raw</span></p>
+                                    <p class="pl-6">path: <span class="text-foreground">src/api/handler.go</span></p>
+                                    <p class="pl-6">line: <span class="text-foreground">45</span></p>
                                 </div>
                             </div>
                         </div>

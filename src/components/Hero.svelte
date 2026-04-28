@@ -103,11 +103,11 @@
                 <p><span class="text-muted-foreground">Confidence:</span> high</p>
                 <p class="text-muted-foreground mt-1">Snippet: <span class="text-foreground">export const POST = async (req) =&gt;</span></p>
                 <p class="mt-4"></p>
-                <p class="text-yellow-500 font-semibold">[HIGH] File upload without MIME validation</p>
-                <p><span class="text-muted-foreground">Rule:</span> semantic.upload.unsafe</p>
-                <p><span class="text-muted-foreground">File:</span> src/controllers/photo.controller.ts:87</p>
+                <p class="text-yellow-500 font-semibold">[HIGH] Weak password hashing introduced</p>
+                <p><span class="text-muted-foreground">Rule:</span> auth.password.weakhash</p>
+                <p><span class="text-muted-foreground">File:</span> src/auth/password.go:34</p>
                 <p><span class="text-muted-foreground">Confidence:</span> high</p>
-                <p class="text-muted-foreground mt-1">Snippet: <span class="text-foreground">const buffer = await file.arrayBuffer();</span></p>
+                <p class="text-muted-foreground mt-1">Snippet: <span class="text-foreground">hash := sha256.Sum256([]byte(password))</span></p>
             </div>
         </div>
     </div>
