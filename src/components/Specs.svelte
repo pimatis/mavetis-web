@@ -3,10 +3,10 @@
     import CardContent from "$lib/components/ui/card/card-content.svelte";
 
     const specs = [
-        { icon: "ph-fill ph-cpu", title: "Analysis Engine", items: ["Regression detection", "Policy-aware review", "Boundary enforcement", "Supply-chain trust analysis"] },
-        { icon: "ph-fill ph-file-code", title: "Detection Areas", items: ["Secrets & cryptography", "Access control & sessions", "Injection & input validation", "Supply chain security", "Business logic flaws", "Configuration header regressions", "File inclusion attacks", "Go semantic analysis"] },
+        { icon: "ph-fill ph-cpu", title: "Analysis Engine", items: ["Regression detection", "Changed-context import discovery", "Centralized rule explanation", "Policy-aware review", "Boundary enforcement", "Supply-chain trust analysis"] },
+        { icon: "ph-fill ph-file-code", title: "Detection Areas", items: ["Secrets & cryptography", "Access control & sessions", "Webhook integrity", "Cloud and IAM guardrails", "AI prompt and tool safety", "Injection & input validation", "Supply chain security", "Business logic flaws", "Configuration header regressions", "File inclusion attacks", "Go semantic analysis"] },
         { icon: "ph-fill ph-sliders-horizontal", title: "Rule Profiles", items: ["auth — authentication & tokens", "fintech — high-assurance review", "backend — server-side security", "frontend — browser-facing auth"] },
-        { icon: "ph-fill ph-funnel", title: "Output Formats", items: ["Interactive text (ANSI)", "Machine-readable JSON", "SARIF 2.1.0", "Exit codes for CI/CD"] }
+        { icon: "ph-fill ph-funnel", title: "Output Formats", items: ["Interactive text (ANSI)", "Deterministic explain text", "Machine-readable JSON", "SARIF 2.1.0", "Exit codes for CI/CD"] }
     ];
 </script>
 

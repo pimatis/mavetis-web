@@ -7,13 +7,13 @@
     const examples = [
         {
             label: "Staged Changes",
-            cmd: "mavetis review --staged --path 'src/**' --profile auth --explain",
-            desc: "Review staged authentication changes with profile-aware explanations"
+            cmd: "mavetis review --staged --path 'src/**' --profile auth --with-context --explain",
+            desc: "Review staged authentication changes with changed-context imports and profile-aware explanations"
         },
         {
             label: "Branch Diff",
-            cmd: "mavetis review --base main --path 'src/**' --profile backend",
-            desc: "Compare backend changes against a base branch"
+            cmd: "mavetis review --base main --path 'src/**' --profile backend --with-context",
+            desc: "Compare backend changes against a base branch with bounded local dependency context"
         },
         {
             label: "File Review",
@@ -31,9 +31,24 @@
             desc: "Review local files together with bounded suggested imports"
         },
         {
+            label: "Changed Context",
+            cmd: "mavetis review --staged --with-context",
+            desc: "Append discovered local imports as reviewed context files without mixing with file targets"
+        },
+        {
+            label: "Rule Explain",
+            cmd: "mavetis rules explain --id webhook.signature.missing",
+            desc: "Print deterministic guidance for builtin, custom, or synthetic semantic rules"
+        },
+        {
+            label: "Explain Alias",
+            cmd: "mavetis explain rule webhook.signature.missing",
+            desc: "Use the compatibility alias for the same rule explanation output"
+        },
+        {
             label: "CI/CD Integration",
-            cmd: "mavetis ci --base main --format json --profile fintech",
-            desc: "Optimized analysis for continuous integration with fintech policy"
+            cmd: "mavetis ci --base main --format json --profile fintech --with-context",
+            desc: "Optimized continuous integration analysis with changed-context dependency review"
         },
         {
             label: "Baseline Create",
@@ -52,6 +67,10 @@
         { flag: "--base <branch>", desc: "Compare against base branch" },
         { flag: "--path <glob>", desc: "Restrict review scope with glob pattern" },
         { flag: "--profile <name>", desc: "Apply rule profile (auth, fintech, backend, frontend)" },
+        { flag: "--with-context", desc: "Add bounded changed-file import context for Git diff reviews" },
+        { flag: "--changed-with-context", desc: "Alias for changed-context review" },
+        { flag: "rules explain --id", desc: "Explain a rule by identifier" },
+        { flag: "explain rule", desc: "Alias for rule explanation" },
         { flag: "--explain", desc: "Verbose finding explanations" },
         { flag: "--with-suggested", desc: "Include bounded local import suggestions" },
         { flag: "--format <fmt>", desc: "Output format (text, json, sarif)" },
@@ -130,7 +149,18 @@
                 "Session fixation and invalidation",
                 "IDOR and ownership verification gaps",
                 "JWT decode-without-verify flaws",
-                "Weak hash and plaintext credential detection"
+                "Weak hash and plaintext credential detection",
+                "Tenant-scoped lookup gaps",
+                "Password reset token logging"
+            ]
+        },
+        {
+            icon: "ph-fill ph-webhooks-logo",
+            title: "Webhooks & Replay",
+            items: [
+                "Webhook handlers without signature verification",
+                "Webhook verification without timestamp or replay-window checks",
+                "JSON parsing before raw-body signature validation"
             ]
         },
         {
@@ -159,6 +189,18 @@
                 "Lockfile integrity violations",
                 "Install-time script execution",
                 "Mutable GitHub Action references"
+            ]
+        },
+        {
+            icon: "ph-fill ph-cloud-warning",
+            title: "Cloud & AI Guardrails",
+            items: [
+                "Public object storage read/write exposure",
+                "Long-lived presigned storage URLs",
+                "Wildcard IAM policies and public SSH ingress",
+                "Secrets added to AI prompts or model messages",
+                "User input assigned to privileged system prompts",
+                "Unvalidated AI tool execution from model output"
             ]
         },
         {
@@ -220,7 +262,8 @@
                 "forbiddenImport — block forbidden module imports",
                 "requiredMiddleware — enforce middleware on routes",
                 "configKeyConstraint — constrain deployable config",
-                "pathBoundary — source-to-target trust boundaries"
+                "pathBoundary — source-to-target trust boundaries",
+                "vulnerable-example and safe-example documentation fields"
             ]
         }
     ];

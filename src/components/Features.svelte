@@ -4,10 +4,15 @@
 
     const features = [
         { icon: "ph-fill ph-arrows-left-right", title: "Regression Core", desc: "Security downgrade detection, config drift, and observability leak detection across Git diffs." },
+        { icon: "ph-fill ph-file-search", title: "Changed Context Review", desc: "Optional --with-context import discovery adds bounded local dependency files to staged, branch, and CI reviews." },
+        { icon: "ph-fill ph-list-magnifying-glass", title: "Rule Explanations", desc: "Explain builtin, custom YAML, and synthetic semantic rules with deterministic text output and safe examples." },
         { icon: "ph-fill ph-shield-check", title: "Air-Gapped Operation", desc: "Complete offline analysis with zero external network dependencies and zero telemetry." },
         { icon: "ph-fill ph-fingerprint", title: "Policy Layer", desc: "Rule profiles (auth, fintech, backend, frontend) and trust zones for risk-weighted review." },
         { icon: "ph-fill ph-git-branch", title: "Boundary Enforcement", desc: "Diff-level architectural boundary checks for privileged modules and admin surfaces." },
         { icon: "ph-fill ph-package", title: "Supply-Chain Trust", desc: "Dependency lifecycle correlation, registry trust drift, and lockfile consistency checks." },
+        { icon: "ph-fill ph-webhooks-logo", title: "Webhook Integrity", desc: "Detect missing signature verification, replay windows, and raw-body handling in provider webhook endpoints." },
+        { icon: "ph-fill ph-cloud-warning", title: "Cloud & IAM Guardrails", desc: "Catch public object storage, long-lived presigned URLs, wildcard IAM policies, and public SSH ingress." },
+        { icon: "ph-fill ph-robot", title: "AI Security Rules", desc: "Flag secret material in prompts, user-controlled system prompts, and unvalidated model-selected tool execution." },
         { icon: "ph-fill ph-code", title: "Flexible Rule Engine", desc: "Custom YAML-based rules with typed policies, contextual scoping, and repository snapshots." },
         { icon: "ph-fill ph-chart-bar", title: "SARIF Integration", desc: "Native JSON and SARIF output formats for seamless CI/CD pipeline integration." },
         { icon: "ph-fill ph-git-merge", title: "Git Hook Integration", desc: "Automated pre-commit and pre-push scanning with configurable fail thresholds." },

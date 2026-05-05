@@ -4,6 +4,7 @@
     import Stats from "../components/Stats.svelte";
     import Features from "../components/Features.svelte";
     import Review from "../components/Review.svelte";
+    import RuleExplain from "../components/RuleExplain.svelte";
     import Comparison from "../components/Comparison.svelte";
     import Specs from "../components/Specs.svelte";
     import Workflow from "../components/Workflow.svelte";
@@ -16,6 +17,7 @@
 <Stats />
 <Features />
 <Review />
+<RuleExplain />
 <Comparison />
 <Specs />
 <Workflow />

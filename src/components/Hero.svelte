@@ -46,7 +46,7 @@
                 Secure Every Git Diff Before It Ships
             </h1>
             <p class="text-muted-foreground text-sm leading-relaxed max-w-md">
-                Enterprise-grade security analysis for Git workflows. Comprehensive static analysis on code changes with complete network isolation. Zero telemetry. Zero dependencies.
+                Enterprise-grade security analysis for Git workflows. Changed-context review, webhook integrity checks, cloud/IAM guardrails, and AI security rules with complete network isolation.
             </p>
             {#if loading}
                 <span class="flex items-center gap-1.5 text-xs text-muted-foreground w-fit">
@@ -92,22 +92,22 @@
                 <span class="text-xs text-muted-foreground ml-2">~/project/mavetis</span>
             </div>
             <div class="p-4 text-xs leading-relaxed font-mono space-y-1">
-                <p class="text-muted-foreground">$ <span class="text-foreground">mavetis review --staged</span></p>
-                <p class="mt-3"><span class="text-muted-foreground">Mode:</span> staged</p>
-                <p><span class="text-muted-foreground">Files:</span> 9</p>
-                <p><span class="text-muted-foreground">Findings:</span> 14 <span class="text-muted-foreground">(critical=3 high=11 medium=0 low=0)</span></p>
+                <p class="text-muted-foreground">$ <span class="text-foreground">mavetis review --staged --with-context</span></p>
+                <p class="mt-3"><span class="text-muted-foreground">Mode:</span> staged+context</p>
+                <p><span class="text-muted-foreground">Files:</span> 9 changed + 4 context</p>
+                <p><span class="text-muted-foreground">Findings:</span> 16 <span class="text-muted-foreground">(critical=5 high=11 medium=0 low=0)</span></p>
                 <p class="mt-4"></p>
-                <p class="text-destructive font-semibold">[CRITICAL] Auth middleware removed from protected route</p>
-                <p><span class="text-muted-foreground">Rule:</span> authorization.scope.deleted</p>
-                <p><span class="text-muted-foreground">File:</span> src/routes/admin/ban/+page.server.ts:42</p>
-                <p><span class="text-muted-foreground">Confidence:</span> high</p>
-                <p class="text-muted-foreground mt-1">Snippet: <span class="text-foreground">export const POST = async (req) =&gt;</span></p>
+                <p class="text-destructive font-semibold">[CRITICAL] Webhook handler without signature verification</p>
+                <p><span class="text-muted-foreground">Rule:</span> webhook.signature.missing</p>
+                <p><span class="text-muted-foreground">File:</span> src/api/webhook.ts:6</p>
+                <p><span class="text-muted-foreground">Confidence:</span> medium</p>
+                <p class="text-muted-foreground mt-1">Snippet: <span class="text-foreground">app.post("/webhook", handler)</span></p>
                 <p class="mt-4"></p>
-                <p class="text-yellow-500 font-semibold">[HIGH] Weak password hashing introduced</p>
-                <p><span class="text-muted-foreground">Rule:</span> auth.password.weakhash</p>
-                <p><span class="text-muted-foreground">File:</span> src/auth/password.go:34</p>
-                <p><span class="text-muted-foreground">Confidence:</span> high</p>
-                <p class="text-muted-foreground mt-1">Snippet: <span class="text-foreground">hash := sha256.Sum256([]byte(password))</span></p>
+                <p class="text-yellow-500 font-semibold">[HIGH] Webhook signature verification after parsed body</p>
+                <p><span class="text-muted-foreground">Rule:</span> webhook.rawbody.missing</p>
+                <p><span class="text-muted-foreground">File:</span> src/api/webhook.ts:7</p>
+                <p><span class="text-muted-foreground">Confidence:</span> medium</p>
+                <p class="text-muted-foreground mt-1">Context: <span class="text-foreground">src/api/signing.ts reviewed</span></p>
             </div>
         </div>
     </div>
